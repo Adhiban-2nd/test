@@ -1,0 +1,37 @@
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class SessionServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException {
+
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        HttpSession session = req.getSession();
+        session.setAttribute("user", "Student");
+
+        out.println("Session Created<br>");
+        out.println("User Name: " + session.getAttribute("user"));
+    }
+}
+
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class CookieServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException {
+
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
+        Cookie c = new Cookie("username", "Student");
+        res.addCookie(c);
+
+        out.println("Cookie Created");
+    }
+}
